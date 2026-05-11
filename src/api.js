@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-export const BASE_URL = import.meta.env.VITE_API_URL || 'https://aura-diary-backend.vercel.app';
+const rawUrl = import.meta.env.VITE_API_URL || 'https://aura-diary-backend.vercel.app';
+// Strip trailing slash and handle misconfigured literal string
+export const BASE_URL = (rawUrl === 'VITE_API_URL' || !rawUrl) 
+  ? 'https://aura-diary-backend.vercel.app' 
+  : rawUrl.replace(/\/$/, '');
 
 const API = axios.create({
   baseURL: `${BASE_URL}/api`,
