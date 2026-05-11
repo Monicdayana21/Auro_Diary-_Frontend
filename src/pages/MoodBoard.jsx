@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import API from '../api';
+import API, { BASE_URL } from '../api';
 import { BOARD_CATEGORIES } from '../constants';
 import toast from 'react-hot-toast';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
@@ -86,7 +86,7 @@ export default function MoodBoard() {
                     <img 
                       src={
                         JSON.parse(typeof b.images === 'string' ? b.images : JSON.stringify(b.images))[0]?.url.startsWith('/uploads/') 
-                        ? `http://localhost:5000${JSON.parse(typeof b.images === 'string' ? b.images : JSON.stringify(b.images))[0]?.url}` 
+                        ? `${BASE_URL}${JSON.parse(typeof b.images === 'string' ? b.images : JSON.stringify(b.images))[0]?.url}` 
                         : JSON.parse(typeof b.images === 'string' ? b.images : JSON.stringify(b.images))[0]?.url
                       } 
                       alt="" 
@@ -131,7 +131,7 @@ export default function MoodBoard() {
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
                   {form.images.map((img, i) => (
                     <div key={i} style={{ position: 'relative', width: 80, height: 80, borderRadius: 8, overflow: 'hidden' }}>
-                      <img src={img.url.startsWith('/uploads/') ? `http://localhost:5000${img.url}` : img.url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <img src={img.url.startsWith('/uploads/') ? `${BASE_URL}${img.url}` : img.url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       <button type="button" onClick={() => removeImage(i)} style={{ position: 'absolute', top: 2, right: 2, background: 'red', color: '#fff', border: 'none', borderRadius: '50%', width: 18, height: 18, fontSize: '0.6rem', cursor: 'pointer' }}>×</button>
                     </div>
                   ))}

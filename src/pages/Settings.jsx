@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { THEMES } from '../constants';
-import API from '../api';
+import API, { BASE_URL } from '../api';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
@@ -87,7 +87,7 @@ export default function Settings() {
               {avatarPreview ? (
                 <img src={avatarPreview} alt="" />
               ) : user?.avatar ? (
-                <img src={user.avatar.startsWith('/uploads/') ? `http://localhost:5000${user.avatar}` : user.avatar} alt="" />
+                <img src={user.avatar.startsWith('/uploads/') ? `${BASE_URL}${user.avatar}` : user.avatar} alt="" />
               ) : (
                 <div className="avatar-placeholder">
                   {user?.name?.charAt(0) || '👤'}

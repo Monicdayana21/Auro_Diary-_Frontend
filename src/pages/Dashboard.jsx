@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import API from '../api';
+import API, { BASE_URL } from '../api';
 import { MOODS } from '../constants';
 
 export default function Dashboard() {
@@ -54,7 +54,7 @@ export default function Dashboard() {
         >
           {user?.avatar ? (
             <img 
-              src={user.avatar.startsWith('/uploads/') ? `http://localhost:5000${user.avatar}` : user.avatar} 
+              src={user.avatar.startsWith('/uploads/') ? `${BASE_URL}${user.avatar}` : user.avatar} 
               alt="" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
@@ -127,7 +127,7 @@ export default function Dashboard() {
                 {j.photos && j.photos.length > 0 && (
                   <div style={{ height: '60px', borderRadius: '4px', overflow: 'hidden', margin: '8px 0' }}>
                     <img 
-                      src={j.photos[0].startsWith('/uploads/') ? `http://localhost:5000${j.photos[0]}` : j.photos[0]} 
+                      src={j.photos[0].startsWith('/uploads/') ? `${BASE_URL}${j.photos[0]}` : j.photos[0]} 
                       alt="" 
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     />

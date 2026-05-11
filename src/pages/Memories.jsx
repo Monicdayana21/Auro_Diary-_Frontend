@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import API from '../api';
+import API, { BASE_URL } from '../api';
 import toast from 'react-hot-toast';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
 
@@ -85,9 +85,9 @@ export default function Memories() {
                     {m.photos.map((photo, idx) => (
                       <div key={idx} style={{ borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
                         {photo.toLowerCase().includes('.mp4') || photo.toLowerCase().includes('.webm') ? (
-                          <video src={photo.startsWith('/uploads/') ? `http://localhost:5000${photo}` : photo} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
+                          <video src={photo.startsWith('/uploads/') ? `${BASE_URL}${photo}` : photo} controls style={{ width: '100%', height: 'auto', display: 'block' }} />
                         ) : (
-                          <img src={photo.startsWith('/uploads/') ? `http://localhost:5000${photo}` : photo} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                          <img src={photo.startsWith('/uploads/') ? `${BASE_URL}${photo}` : photo} alt="" style={{ width: '100%', height: 'auto', display: 'block' }} />
                         )}
                       </div>
                     ))}
@@ -122,9 +122,9 @@ export default function Memories() {
                   {existingPhotos.map((photo, idx) => (
                     <div key={idx} style={{ position: 'relative', width: '60px', height: '60px' }}>
                       {photo.toLowerCase().includes('.mp4') || photo.toLowerCase().includes('.webm') ? (
-                        <video src={photo.startsWith('/uploads/') ? `http://localhost:5000${photo}` : photo} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
+                        <video src={photo.startsWith('/uploads/') ? `${BASE_URL}${photo}` : photo} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
                       ) : (
-                        <img src={photo.startsWith('/uploads/') ? `http://localhost:5000${photo}` : photo} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
+                        <img src={photo.startsWith('/uploads/') ? `${BASE_URL}${photo}` : photo} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
                       )}
                       <button type="button" onClick={() => setExistingPhotos(existingPhotos.filter((_, i) => i !== idx))} style={{ position: 'absolute', top: '-5px', right: '-5px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '18px', height: '18px', fontSize: '10px', cursor: 'pointer' }}>×</button>
                     </div>

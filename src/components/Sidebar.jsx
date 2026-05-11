@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { FiHome, FiBook, FiSmile, FiImage, FiTarget, FiMessageSquare, FiClock, FiStar, FiMoon, FiSettings, FiLogOut, FiChevronLeft, FiChevronRight, FiMenu } from 'react-icons/fi';
+import { BASE_URL } from '../api';
 
 export default function Sidebar({ collapsed, setCollapsed }) {
   const { user, logout } = useAuth();
@@ -80,7 +81,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
           <div className="avatar">
             {user?.avatar ? (
               <img 
-                src={user.avatar.startsWith('/uploads/') ? `http://localhost:5000${user.avatar}` : user.avatar} 
+                src={user.avatar.startsWith('/uploads/') ? `${BASE_URL}${user.avatar}` : user.avatar} 
                 alt="" 
                 style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} 
               />

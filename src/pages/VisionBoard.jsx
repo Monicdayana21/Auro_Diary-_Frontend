@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import API from '../api';
+import API, { BASE_URL } from '../api';
 import { BOARD_CATEGORIES } from '../constants';
 import toast from 'react-hot-toast';
 import { FiPlus, FiTrash2 } from 'react-icons/fi';
@@ -93,7 +93,7 @@ export default function VisionBoard() {
                 {b.cover_image && (
                   <div style={{ width: '100%', height: '120px', borderRadius: '8px', overflow: 'hidden', marginBottom: '12px' }}>
                     <img 
-                      src={b.cover_image.startsWith('/uploads/') ? `http://localhost:5000${b.cover_image}` : b.cover_image} 
+                      src={b.cover_image.startsWith('/uploads/') ? `${BASE_URL}${b.cover_image}` : b.cover_image} 
                       alt="" 
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                     />
